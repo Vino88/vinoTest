@@ -1,0 +1,24 @@
+<head th:fragment="header">
+    <!-- Required meta tags header -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${title}"> </title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{/node_modules/mdi/css/materialdesignicons.min.css}">
+    <link rel="stylesheet" th:href="@{/node_modules/simple-line-icons/css/simple-line-icons.css}">
+    <link rel="stylesheet" th:href="@{/node_modules/flag-icon-css/css/flag-icon.min.css}">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" th:href="@{/node_modules/chartist/dist/chartist.min.css}" />
+    <link rel="stylesheet" th:href="@{/node_modules/jvectormap/jquery-jvectormap.css}" />
+    <link rel="stylesheet" th:href="@{/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/node_modules/select2/css/select2.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css">
+
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" th:href="">
+    <!-- endinject -->
+
+</head>

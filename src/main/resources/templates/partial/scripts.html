@@ -1,0 +1,19 @@
+<section th:fragment="script">
+    <!-- plugins:js -->
+    <script th:src="@{/node_modules/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/node_modules/popper.js/dist/umd/popper.min.js}"></script>
+    <script th:src="@{/node_modules/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script th:src="@{/node_modules/datatables.net/js/jquery.dataTables.js}"></script>
+    <script th:src="@{/node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js}"></script>
+    <script th:src="@{/node_modules/flot/jquery.flot.js}"></script>
+    <script th:src="@{/node_modules/flot/jquery.flot.resize.js}"></script>
+    <script th:src="@{/node_modules/flot.curvedlines/curvedLines.js}"></script>
+    <script th:src="@{/node_modules/sweetalert/sweetalert.min.js}"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script th:src="@{/js/off-canvas.js}"></script>
+    <script th:src="@{/js/misc.js}"></script>
+    <!-- endinject -->
+</section>

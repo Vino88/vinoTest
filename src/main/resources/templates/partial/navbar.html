@@ -1,0 +1,104 @@
+<!-- partial:partials/_navbar.html -->
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" th:fragment="navbar">
+    <div class="text-center navbar-brand-wrapper">
+        <a class="navbar-brand brand-logo" th:href="@{/}"><img th:src="" alt="logo"></a>
+        <a class="navbar-brand brand-logo-mini" th:href="@{/}"><img th:src="" alt="logo"></a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center">
+        <p class="page-name d-none d-lg-block">Hi, Administrator</p>
+        <ul class="navbar-nav ml-lg-auto">
+            <li class="nav-item">
+                <form class="mt-2 mt-md-0 d-none d-lg-block search-input">
+                    <div class="input-group">
+                        <span class="input-group-addon d-flex align-items-center"><i class="icon-magnifier icons"></i></span>
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item dropdown notification-dropdown">
+                <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-toggle="dropdown">
+                    <i class="icon-speech icons"></i>
+                    <span class="count"></span>
+                </a>
+                <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown">
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon">
+                                <i class="icon-info mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject font-weight-medium">Application Error</p>
+                            <p class="font-weight-light small-text">
+                                Just now
+                            </p>
+                        </div>
+                    </a>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon">
+                                <i class="icon-speech mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject">Settings</p>
+                            <p class="font-weight-light small-text">
+                                Private message
+                            </p>
+                        </div>
+                    </a>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon">
+                                <i class="icon-envelope mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject">New user registration</p>
+                            <p class="font-weight-light small-text">
+                                2 days ago
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown d-none d-sm-block profile-img notification-dropdown">
+                <a class="nav-link profile-image" href="#" id="notificationDropdown2" data-toggle="dropdown">
+                    <img th:src="@{/images/faces/face4.jpg}" alt="profile-img">
+                    <span class="online-status online bg-success"></span>
+                </a>
+                <div class="dropdown-menu navbar-dropdown preview-list notification-drop-down dropdownAnimation" aria-labelledby="notificationDropdown2">
+                    <a class="dropdown-item preview-item" th:href="@{/change-password}">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon">
+                                <i class="icon-encrypt mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject font-weight-medium">Rubah Password</p>
+                            <p class="font-weight-light small-text">
+                                Click to change password
+                            </p>
+                        </div>
+                    </a>
+                    <a class="dropdown-item preview-item" th:href="@{/logout}">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon">
+                                <i class="icon-key mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject font-weight-medium">Logout</p>
+                            <p class="font-weight-light small-text">
+                                Click to logout
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center ml-auto" type="button" data-toggle="offcanvas">
+            <span class="icon-menu icons"></span>
+        </button>
+    </div>
+</nav>

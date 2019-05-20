@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="partial/header :: header">
+
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav th:replace="partial/navbar :: navbar"></nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <nav th:replace="partial/menu :: sidebar"></nav>
+            <!-- partial -->
+            <div class="content-wrapper">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Master Employee</h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <button class='btn btn-success btn-fw' data-toggle="modal" data-target="#exampleModal">Tambah Data</button><br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <table id="employee_table" class="table" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- MODAL -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Employee</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" id="employeeForm" name="ppbiForm">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">FullName</label>
+                                        <div class="col-sm-8">
+                                            <input type="hidden" id="id" name="id">
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="FullName">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="email" name="email" class="form-control" placeholder="email">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="saveForm()">Submit</button>
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- END MODAL -->
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="container-fluid clearfix">
+                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright XXXX© 2019</span>
+                </div>
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- row-offcanvas ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<section th:replace="partial/scripts :: script"></section>
+<!-- Custom js for this page-->
+<script th:src="@{/js/dkppMain.js}"></script>
+<script th:src="@{/js/data-table.js}"></script>
+<script type="text/javascript">
+
+    var mutasiKantorBayar = dkppDataTable($('#ppbi_table'),
+        '[[${employee_path_api}]]',
+        {
+            'columns': [
+                {
+                    "data": "id"
+                },
+                {
+                    "data": "fullName"
+                },
+                {
+                    "data": "email"
+                },
+                {
+                    "data": "id",
+                    "width" : "200px"
+                },
+            ],
+            'columnDefs': [
+                {
+                    "targets": -1,
+                    "className": "action-box",
+                    "render": function(data, type, row, meta){
+                        let row_data = JSON.stringify(row);
+                        htmlTag  = "<a class='btn btn-outline-info btn-sm btn-icon btn-edit' onclick='displayEditModal(" +row_data+ ")'> Ubah Data</a> <a class='btn btn-danger btn-sm btn-icon btn-edit' onclick='hapus("+row_data+")'> Hapus</a>";
+                        return htmlTag;
+                    }
+                },
+                {
+                    "targets": 0,
+                    "className": "action-box",
+                    "render": function(data, type, row, meta){
+                        return meta.row+1; //Nomor Urut
+                    }
+                },
+            ]
+        });
+
+    function saveForm() {
+        $.ajax({
+            url: '[[${employee_path_api}]]',
+            method: "POST",
+            data: formToJSON($("form#employeeForm")[0].elements),
+            success: function(data){
+                $('#exampleModal').modal('hide');
+                if(data.status == "success") {
+                    swal({title: "Berhasil", text: data.message, icon: "success", button: "OK"});
+                }else{
+
+                }
+                mutasiKantorBayar.ajax.reload();
+            },
+            statusCode: {
+                500: function(xhr) {
+                    swal({title: "Gagal", text: xhr.responseText, icon: "error", button: "OK"});
+                },
+                302: function(xhr){
+                    swal({title: "Gagal", text: "Terjadi kegagalan.", icon: "error", button: "OK"});
+                }
+            }
+        });
+    }
+
+    $('#exampleModal').on('hidden.bs.modal', function () {
+        clearModal();
+    });
+
+    function clearModal(){
+        $('#id').val("");
+        $('#name').val("");
+        $('#email').val("");
+    }
+
+    function displayEditModal(row){
+        $('#exampleModal').modal('show');
+        $('#id').val(row.id);
+        $('#name').val(row.name);
+        $('#email').val(row.alamatSurat1);
+    }
+
+    function hapus(data) {
+        var r = confirm("Data Akan Dihapus!");
+        if (r == true) {
+            $.ajax({
+                url: "[[${baseUrl}]]"+"/api/master-data/employee/delete/"+data.id,
+                method: "DELETE",
+                success: function(data){
+                    $('#exampleModalEdit').modal('hide');
+                    if(data.status == "success") {
+                        swal({title: "Berhasil", text: data.message, icon: "success", button: "OK"});
+                    }else{
+
+                    }
+                    mutasiKantorBayar.ajax.reload();
+                },
+                statusCode: {
+                    500: function(xhr) {
+                        swal({title: "Gagal", text: xhr.responseText, icon: "error", button: "OK"});
+                    },
+                    400: function(xhr) {
+                        swal({title: "Gagal", text: xhr.responseText, icon: "error", button: "OK"});
+                    },
+                    302: function(xhr){
+                        swal({title: "Gagal", text: "Terjadi kegagalan.", icon: "error", button: "OK"});
+                    }
+                }
+            });
+        } else {
+
+        }
+    }
+</script>
+<!-- End custom js for this page-->
+</body>
+
+</html>
