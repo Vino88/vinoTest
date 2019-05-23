@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface EmployeeService {
 
-    Integer findById(Integer id);
+    Employee findById(Integer id);
 
     Iterable<Employee>findAll();
 
@@ -18,5 +18,7 @@ public interface EmployeeService {
     void addOrUpdateEmployee(EmployeeDto requestData);
 
     void delete(Integer id);
+
+    Employee findByEmail();
 
 }

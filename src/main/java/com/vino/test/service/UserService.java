@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService {
-    Page<Users> getPagingAllData(String searchParam, Pageable pageable);
+
 }

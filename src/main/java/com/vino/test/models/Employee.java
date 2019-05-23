@@ -3,7 +3,6 @@ package com.vino.test.models;
 import com.vino.test.dto.EmployeeDto;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="tbl_employee")

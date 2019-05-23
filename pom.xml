@@ -69,11 +69,6 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
         <dependency>
-            <groupId>com.dapenbi.heronline</groupId>
-            <artifactId>herOnlineMVC</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
             <version>2.2.0.BUILD-SNAPSHOT</version>
@@ -103,6 +98,20 @@
 			<groupId>net.sf.barcode4j</groupId>
 			<artifactId>barcode4j</artifactId>
 			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.12.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.cloudfoundry.identity</groupId>
+			<artifactId>cloudfoundry-identity-login</artifactId>
+			<version>2.3.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

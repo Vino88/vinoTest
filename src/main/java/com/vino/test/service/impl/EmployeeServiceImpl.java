@@ -20,8 +20,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     EmployeeRepository employeeRepository;
 
     @Override
-    public Integer findById(Integer id) {
-        return employeeRepository.findById(id).getId();
+    public Employee findById(Integer id) {
+        return employeeRepository.findById(id).get();
     }
 
     @Override
@@ -39,8 +39,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setUserStamp(Prefix.LocalComputerName());
             employeeRepository.save(employee);
         } else {
-            Optional<Employee> employee = Optional.ofNullable(employeeRepository.findById(requestData.getId()));
-            Employee currentData =  employee.get();
+            Optional<Employee> employee = employeeRepository.findById(requestData.getId());
+            Employee currentData = employee.get();
             currentData.setFullName(requestData.getFullName());
             currentData.setEmail(requestData.getEmail());
             currentData.setUpdatedAt(new Date());
@@ -52,6 +52,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void delete(Integer id) {
         employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public Employee findByEmail() {
+        return employeeRepository.findAllByEmail();
     }
 
     @Override

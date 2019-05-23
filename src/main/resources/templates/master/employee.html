@@ -42,7 +42,7 @@
             </div>
             <!-- MODAL -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Employee</h5>
@@ -50,7 +50,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="post" id="employeeForm" name="ppbiForm">
+                        <form method="post" id="employeeForm" name="employeeForm">
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
@@ -58,7 +58,7 @@
                                         <label class="col-sm-4 col-form-label">FullName</label>
                                         <div class="col-sm-8">
                                             <input type="hidden" id="id" name="id">
-                                            <input type="text" id="name" name="name" class="form-control" placeholder="FullName">
+                                            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="FullName">
                                         </div>
                                     </div>
                                 </div>
@@ -104,8 +104,8 @@
 <script th:src="@{/js/data-table.js}"></script>
 <script type="text/javascript">
 
-    var mutasiKantorBayar = dkppDataTable($('#ppbi_table'),
-        '[[${employee_path_api}]]',
+    var mutasiKantorBayar = dkppDataTable($('#employee_table'),
+        '[[@{/api/master-data/employee}]]',
         {
             'columns': [
                 {
@@ -128,7 +128,7 @@
                     "className": "action-box",
                     "render": function(data, type, row, meta){
                         let row_data = JSON.stringify(row);
-                        htmlTag  = "<a class='btn btn-outline-info btn-sm btn-icon btn-edit' onclick='displayEditModal(" +row_data+ ")'> Ubah Data</a> <a class='btn btn-danger btn-sm btn-icon btn-edit' onclick='hapus("+row_data+")'> Hapus</a>";
+                        htmlTag  = "<a class='btn btn-info btn-sm btn-icon btn-edit' onclick='displayEditModal(" +row_data+ ")'><i class='fa-credit-card fa-pencil'> Ubah Data</i></a> <a class='btn btn-danger btn-sm btn-icon btn-edit' onclick='hapus("+row_data+")'><i class='fa-apple fa-trash'> Hapus</i></a>";
                         return htmlTag;
                     }
                 },
@@ -173,22 +173,22 @@
 
     function clearModal(){
         $('#id').val("");
-        $('#name').val("");
+        $('#fullName').val("");
         $('#email').val("");
     }
 
     function displayEditModal(row){
-        $('#exampleModal').modal('show');
         $('#id').val(row.id);
-        $('#name').val(row.name);
-        $('#email').val(row.alamatSurat1);
+        $('#fullName').val(row.fullName);
+        $('#email').val(row.email);
+        $('#exampleModal').modal('show');
     }
 
     function hapus(data) {
         var r = confirm("Data Akan Dihapus!");
         if (r == true) {
             $.ajax({
-                url: "[[${baseUrl}]]"+"/api/master-data/employee/delete/"+data.id,
+                url: "[[@{/api/master-data/employee/delete}]]/"+data.id,
                 method: "DELETE",
                 success: function(data){
                     $('#exampleModalEdit').modal('hide');
