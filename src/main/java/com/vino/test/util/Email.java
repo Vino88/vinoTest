@@ -2,7 +2,6 @@ package com.vino.test.util;
 
 import com.vino.test.dto.EmployeeDto;
 import com.vino.test.models.Employee;
-import com.vino.test.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -42,14 +41,12 @@ public class Email {
 
     private ServletContext servletContext;
 
-    private EmployeeService employeeService;
 
     @Autowired
-    private void Email(JavaMailSender sender, Environment env, ServletContext servletContext, EmployeeService employeeService) {
+    private void Email(JavaMailSender sender, Environment env, ServletContext servletContext) {
         this.sender = sender;
         this.env = env;
         this.servletContext = servletContext;
-        this.employeeService = employeeService;
     }
 
     public String getBody() {

@@ -2,8 +2,6 @@ package com.vino.test.util;
 
 import com.vino.test.dto.EmployeeDto;
 import com.vino.test.models.Employee;
-import com.vino.test.repository.EmployeeRepository;
-import com.vino.test.service.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +16,9 @@ public class sendMailScheduler {
 
     Email email;
 
-    EmployeeService employeeService;
-
-    EmployeeRepository employeeRepository;
-
-
     @Autowired
-    private void sendMailScheduler(Email email, EmployeeService employeeService, EmployeeRepository employeeRepository){
+    private void sendMailScheduler(Email email){
         this.email = email;
-        this.employeeService = employeeService;
-        this.employeeRepository = employeeRepository;
     }
 
     private static final Logger log = LoggerFactory.getLogger(sendMailScheduler.class);

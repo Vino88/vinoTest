@@ -1,63 +1,35 @@
 package com.vino.test.models;
 
-import com.vino.test.dto.EmployeeDto;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name="tbl_employee")
-public class Employee extends BaseModel<EmployeeDto>{
+@Getter
+@Setter
+@Table(name="CUSTOMER")
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeId")
+    @Column(name = "id_customer")
     private Integer id;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "first_name")
+    private String firstName;
 
+    @Column(name = "last_name")
+    private String lastName;
+    
     private String email;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    @Override
-    public void fromDto(EmployeeDto dto) {
-        this.setId(dto.getId());
-        this.setFullName(dto.getFullName());
-        this.setEmail(dto.getEmail());
-    }
-
-    @Override
-    public EmployeeDto toDto() {
-        EmployeeDto dto = new EmployeeDto();
-
-        dto.setId(this.getId());
-        dto.setFullName(this.getFullName());
-        dto.setEmail(this.getEmail());
-
-        return dto;
-    }
+    
+    private String phone;
+    
+    private String address;
 }

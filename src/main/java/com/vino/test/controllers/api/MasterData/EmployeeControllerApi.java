@@ -3,7 +3,6 @@ package com.vino.test.controllers.api.MasterData;
 import com.vino.test.Prefix;
 import com.vino.test.dto.EmployeeDto;
 import com.vino.test.models.Employee;
-import com.vino.test.service.EmployeeService;
 import com.vino.test.util.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeControllerApi {
-
+/*
     @Autowired
     EmployeeService employeeService;
 
@@ -53,4 +52,5 @@ public class EmployeeControllerApi {
             return new ResponseEntity<MessageUtil>(messageUtil, HttpStatus.NOT_IMPLEMENTED);
         }
     }
+    */
 }
