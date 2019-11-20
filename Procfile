@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/vinoTesting-0.0.1-SNAPSHOT.jar -Dserver.port=$PORT $JAR_OPTS
+web: java $JAVA_OPTS -war target/vinoTesting 0.0.1-SNAPSHOT.war -Dserver.port=$PORT $WAR_OPTS
